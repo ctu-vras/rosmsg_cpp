@@ -8,7 +8,7 @@ This package provides both C++ library `librosmsg_cpp.so` and executable `rosmsg
 
 ### Library
 
-For usage of the library, see the documentation in [include/rosmsg_cpp/rosmsg_cpp.h]().
+For usage of the library, see the documentation in [include/rosmsg_cpp/rosmsg_cpp.h](include/rosmsg_cpp/rosmsg_cpp.h).
 
 ### Executable
 
