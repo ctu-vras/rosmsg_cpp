@@ -19,6 +19,17 @@ include_directories(
 add_library(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
 add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${PYTHON_LIBRARIES})
+# we pass ROS_DISTRO as a define for the case when the build runs on ROS buildfarm,
+# where ROS environment is not fully sourced during the build
+if(DEFINED ENV{ROS_DISTRO})
+  set(ros_distro $ENV{ROS_DISTRO})
+else()
+  set(ros_distro "melodic")
+  if ("${roslib_PREFIX}" MATCHES "noetic")
+    set(ros_distro "noetic")
+  endif()
+endif()
+target_compile_definitions(${PROJECT_NAME} PRIVATE ROS_DISTRO="${ros_distro}")
 
 add_executable(rosmsgpp src/cli.cpp)
 add_dependencies(rosmsgpp ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

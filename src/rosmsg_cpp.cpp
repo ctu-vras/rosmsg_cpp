@@ -1,10 +1,12 @@
 #include "rosmsg_cpp/rosmsg_cpp.h"
 
 #include <iostream>
+#include <cstdlib>
 
 #include <Python.h>
 
 #include <ros/package.h>
+#include <ros/platform.h>
 
 namespace ros
 {
@@ -12,6 +14,21 @@ namespace message
 {
 
 static bool pythonInitialized = [](){
+  // the ROS_ROOT workaround is needed (probably) just on ROS buildfarm
+  std::string tmp;
+  if (!ros::get_environment_variable(tmp, "ROS_ROOT"))
+  {
+    std::cerr << "ROS_ROOT not found" << std::endl;
+    std::string rosDistro;
+    if (!ros::get_environment_variable(rosDistro, "ROS_DISTRO"))
+    {
+      rosDistro = ROS_DISTRO;
+      std::cerr << "ROS_DISTRO not found, setting " << rosDistro << std::endl;
+    }
+    const auto rosRoot = "/opt/ros/" + rosDistro + "/share/ros";
+    std::cerr << "Setting ROS_ROOT to " << rosRoot << std::endl;
+    ::setenv("ROS_ROOT", rosRoot.c_str(), false);
+  }
   Py_Initialize();
   return true;
 }();
