@@ -17,10 +17,12 @@
   <buildtool_depend>catkin</buildtool_depend>
   <buildtool_depend>ros_environment</buildtool_depend>
 
+  <build_depend>cpp_common</build_depend>
   <build_depend condition="$ROS_PYTHON_VERSION == 2">python-dev</build_depend>
   <build_depend condition="$ROS_PYTHON_VERSION == 3">python3-dev</build_depend>
   <build_depend>roslib</build_depend>
 
+  <exec_depend>cpp_common</exec_depend>
   <exec_depend>message_runtime</exec_depend>
   <exec_depend condition="$ROS_PYTHON_VERSION == 2">python</exec_depend>
   <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3</exec_depend>

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(rosmsg_cpp)
 
-find_package(catkin REQUIRED COMPONENTS roslib)
+find_package(catkin REQUIRED COMPONENTS cpp_common roslib)
 
 find_package(PythonLibs $ENV{ROS_PYTHON_VERSION} REQUIRED)
 
