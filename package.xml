@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>rosmsg_cpp</name>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <description>C++ library for getting full message definition or MD5 sum given message type as string</description>
 
   <maintainer email="peckama2@fel.cvut.cz">Martin Pecka</maintainer>
